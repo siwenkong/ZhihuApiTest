@@ -13,13 +13,30 @@ class ConfigHttp:
     def set_data(self,data):
         self.data = data
 
-    def set_method(self,method):
+    def set_method(self, method):
         self.method = method
 
-    def set_headers(self,headers):
+    def set_headers(self, headers):
         self.headers = headers
 
     def get(self):
         try:
-            response = requests.get(self.url,headers = self.headers,)
+            response = requests.get(self.url, headers=self.headers)
+            return response
+        except TimeoutError:
+            print("Time out----get")
+            return None
+
+    def post(self):
+        try:
+            response = requests.post(self.url, headers=self.headers, data=self.data)
+            return response
+        except TimeoutError:
+            print("Time out----post")
+            return None
+
+if __name__ == "__main__":
+    print("ConfigHTTP")
+
+
 

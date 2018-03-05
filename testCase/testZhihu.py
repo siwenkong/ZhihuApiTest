@@ -1,10 +1,11 @@
 import unittest
 
 import paramunittest
-
+from common import configHttp as configHttp
 from common import common
 
 zhihu_xls = common.get_xls("zhihu_zpi.xls", "zhihu")
+localConfigHttp = configHttp.ConfigHttp()
 
 @paramunittest.parametrized(*zhihu_xls)
 class Zhihu(unittest.TestCase):
@@ -22,5 +23,6 @@ class Zhihu(unittest.TestCase):
         print('知乎api测试开始')
 
     def testZhihu(self):
-        self.url
+        self.response = localConfigHttp.get()
+
 
